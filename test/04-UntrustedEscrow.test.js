@@ -45,13 +45,7 @@ describe("4- Untrusted Escrow", async () => {
                 ).to.be.revertedWith("Invalid recipient: zero address")
             )
         })
-        it("reverts if recipient is a contract", async () => {
-            expect(
-                await expect(
-                    untrustedEscrow.receiveTokens(standardTokenAddress, AMOUNT_OF_TOKENS, seller, standardTokenAddress)
-                ).to.be.revertedWith("Invalid recipient: cannot be a contract")
-            )
-        })
+
         it("reverts if the allowance is not sufficient", async () => {
             expect(
                 await expect(

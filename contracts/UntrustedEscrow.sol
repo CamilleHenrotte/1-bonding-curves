@@ -33,7 +33,6 @@ contract UntrustedEscrow is ReentrancyGuard {
      */
     function receiveTokens(address tokenAddress, uint256 amount, address seller, address recipient) external {
         require(recipient != address(0), "Invalid recipient: zero address");
-        require(!isContract(recipient), "Invalid recipient: cannot be a contract");
         require(
             IERC20(tokenAddress).allowance(seller, address(this)) >= amount,
             "The escrow contract does not have sufficient allowance for the transfer"
@@ -88,21 +87,5 @@ contract UntrustedEscrow is ReentrancyGuard {
         }
 
         return balance;
-    }
-
-    /**
-     * @dev Internal function to check if a given address is a contract.
-     *
-     * @param account The address to check.
-     * @return bool Returns true if the account is a contract, false otherwise.
-     *
-     * @notice This function uses the extcodesize assembly instruction to determine if the account has code.
-     */
-    function isContract(address account) internal view returns (bool) {
-        uint256 size;
-        assembly {
-            size := extcodesize(account)
-        }
-        return size > 0;
     }
 }
