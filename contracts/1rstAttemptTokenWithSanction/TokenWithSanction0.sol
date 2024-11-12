@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity =0.8.27;
+pragma solidity =0.8.28;
 
 import {ERC777} from "@openzeppelin/contracts/token/ERC777/ERC777.sol";
 import {Ownable2Step} from "@openzeppelin/contracts/access/Ownable2Step.sol";
